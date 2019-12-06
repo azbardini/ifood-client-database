@@ -10,7 +10,7 @@
 - Change Postgress user/passwd to `postgres/pass`
   - ```\password postgres```
 - There must be a database called `fbd` in postgres
-- Import the databases to `fbd`
+- Import the tables and data to `fbd`
 
 ### Software
 
