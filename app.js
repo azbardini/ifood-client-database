@@ -58,6 +58,9 @@ async function showMenu() {
     case 'menu':
       await menu();
       break;
+    case 'inscus':
+      await inscus();
+      break;
     case 'help':
       await help();
       break;
@@ -80,6 +83,7 @@ function help() {
   console.log('card:      (Group By) - Quantas vezes cada cliente pagou com cartão');
   console.log('deliver:   Todas as entregas que um input(Deliveryman.name) fez');
   console.log('menu:      Cardápio de um input(Restaurant.name), com cada Meal e seus Extras');
+  console.log('inscus:    Insere um novo Customer (para ver o trigger em acao)');
   console.log('\nhelp:      Help');
   console.log('exit:      Exit');
 }
@@ -275,6 +279,20 @@ async function menu() {
       printOnScreen(res.rows);
     };
   }).catch(() => console.log("Error finding results"));
+}
+
+async function inscus() {
+  console.log('CPF: (111222333-44)');
+  let cpf = await userInput();
+  console.log('Email: (exemplo@exemplo.com)');
+  let email = await userInput();
+  console.log('Nome: (Beltrano de Tal)');
+  let nome = await userInput();
+  console.log('Passwd: (qwerqwerqwer)');
+  let passwd = await userInput();
+  client.query(`
+    insert into customer values ('${cpf}', '${email}', '${nome}', '${passwd}');
+    `).then(() => console.log("Successfully inserted")).catch(() => console.log("Error finding results"));
 }
 
 function userInput() {
